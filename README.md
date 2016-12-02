@@ -7,8 +7,7 @@ WHAT IS THIS
 A somewhat exhaustive monitoring solution for an Arcsight Connector Appliance with the help of zabbix, python and discovery rules.
 RHEL 6.6+ tested.
 
-
-
+\n
 
 THE PIECES
 The first is essentially a custom zabbix agent written from scratch in python. It is a multithreaded application designed to 
