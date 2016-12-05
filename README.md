@@ -28,6 +28,8 @@ are running on each container.
 
 * Push the connector_bot.py and start_bot.sh wrapper into the directory we just created. Ensure start_bot.sh is executable.
 
+* Ensure that the [hp-health RPM](https://downloads.linux.hpe.com/SDR/repo/mcp/centos/6/i386/10.00/) is installed on your appliance. 
+
 * Finaly, with the zabbix entry in place and the scripts on the box, simply start up the bot on the appliance by calling ./start_bot.sh
 
 The script will begin with reading the agent.properties file and go on creating item/trigger prototypes based on the destination and 
