@@ -81,7 +81,7 @@ class Container(object):
 #  GLOBALS
 #============
 ZABBIX_SERVER = ""
-path = ""
+path = ("/opt/arcsight/connector_") #set the root path where all the connectors can be found.
 lock = threading.Semaphore(10)
 CONTAINERS=[]
 
@@ -723,11 +723,6 @@ try:
         sys.stdout = open("/home/Script/zabbix_bot/dump" + ".log", "a")
         sys.stderr = open("/home/Script/zabbix_bot/dump" + ".error", "a")
         if __name__ == '__main__':
-
-                #set the root path where all the connectors can be found.
-                path = ("/opt/arcsight/connector_")
-
-
                 #here we are crafting a priliminary list of the non-empty containers (those that we will scarpe the agent.properties file)
                 #create a temporary list of the containers so we can itterate thorugh them.
                 temp_list=[]; temp_list.append(c_1); temp_list.append(c_2); temp_list.append(c_3); temp_list.append(c_4); temp_list.append(c_5); temp_list.append(c_6); temp_list.append(c_7); temp_list.append(c_8);
