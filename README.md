@@ -1,15 +1,13 @@
 # arcsight_monitoring
-Zabbix templates and custom python agents designed to monitor Arcsight connectors.
+Are you looking for an easy way to monitor your Arcsight Connectors with the help of Zabbix? Then feel free to keep reading.
 
-This repository consists of two major components. 
 
-WHAT IS THIS
-A somewhat exhaustive monitoring solution for an Arcsight Connector Appliance with the help of zabbix, python and discovery rules.
+## WHAT IS THIS
+A somewhat exhaustive monitoring solution for an Arcsight Connector Appliance with the help of zabbix discovery rules and python.
 RHEL 6.6+ tested.
 
-\n
 
-THE PIECES
+## THE PIECES
 The first is essentially a custom zabbix agent written from scratch in python. It is a multithreaded application designed to 
 provide an Arcsight Administrator an easy, self healing way to instantly begin monitoring their connector appliances with zabbix.
 
@@ -21,19 +19,16 @@ everytime the bot is run, it will use the discovery items to update the entry on
 are running on each container.
 
 
+## HOW TO SETUP
+* Import the provided template into your zabbix server
 
+* Create an entry for the connector you want to monitor. Ensure that the name in zabbix is an exact match of the short form hostname for your connector (ex: fqx2s3.example.pizza.ca = fqx2s3). Apply the Connector template to this entry. 
 
+* On your connector appliance, create a /home/scripts/zabbix_bot/ directory. 
 
-HOW TO SETUP
-First step required is to import the connector template into zabbix. The connector template is designed to have the Zabbix agent
-template be linked to it.
+* Push the connector_bot.py and start_bot.sh wrapper into the directory we just created. Ensure start_bot.sh is executable.
 
-Once imported, you should create an entry for you connector appliance. The name of the entry in zabbix should match EXACTLY 
-the short form host name that the box has (ex: fqx2s3.example.pizza.ca = fqx2s3).
-
-After the entry is created and the connector template applied to it, you should push the script and wrapper to your arcsight connector.
-
-Finaly, with the zabbix entry in place and the scripts on the box, simply start up the bot on the appliance by calling ./start_bot.sh
+* Finaly, with the zabbix entry in place and the scripts on the box, simply start up the bot on the appliance by calling ./start_bot.sh
 
 The script will begin with reading the agent.properties file and go on creating item/trigger prototypes based on the destination and 
 agent information it finds in the agent.properties file.
