@@ -24,6 +24,10 @@ However, if it determines that there is an agent configured, the bot will contin
 
 
 
+### start_bot.sh
+Used as a simple wrapper allowing us to hook the connector bot onto the init process. Effectively keeping it alive if you start it over an SSH session.
+
+
 ## HOW TO SETUP
 * Import the provided template into your zabbix server
 
