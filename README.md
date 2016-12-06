@@ -8,15 +8,20 @@ RHEL 6.6+ tested.
 
 
 ## THE PIECES
-The first is essentially a custom zabbix agent written from scratch in python. It is a multithreaded application designed to 
-provide an Arcsight Administrator an easy, self healing way to instantly begin monitoring their connector appliances with zabbix.
+### arcsight_connector_template.xml
+This is the template you should be importing into Zabbix. It houses multiple applications, items, triggers and twp important discovery rule trappers.
 
-The bot is self healing in the sense that the Zabbix template makes heavy use of custom discovery rules, allowing for the
-connector agents details to be reflected in Zabbix automatically.
+The discovery rule trappers are the bulk of what make this solution useful. The connector_appliance_bot will use these rules to update the entry for a connector on the zabbix server when it notices changes in the agent properties file.
 
-Second is the aforementioned zabbix template. The template has a few static items, as well as a bunch of prototypes. The idea is that 
-everytime the bot is run, it will use the discovery items to update the entry on the zabbix server about what destinations and agents 
-are running on each container.
+
+
+### connector_appliance_bot.py
+This boils down to a custom zabbix agent written from scratch in python. It is a multithreaded application that makes heavy use of the zabbix_sender binary. It is designed to provide an Arcsight Administrator with a monitoring solution that comes with little to no overhead.
+
+At every startup, the bot will first, inspect the agent.properties file and determine if there is an agent configured on a container or not. IF it determines there is none the c_x.state item will reflect EMPTY as a state.
+
+However, if it determines that there is an agent configured, the bot will continue by programatically determining the number of agents and their detiantions, followed by crafting a JSON request with that information in order to send out to our custom discovery rule.
+
 
 
 ## HOW TO SETUP
